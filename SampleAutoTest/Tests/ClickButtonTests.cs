@@ -3,61 +3,63 @@ using SampleAutoTest.Pages;
 using SampleAutoTest.TestHelper;
 using System.ComponentModel;
 
-
-[TestFixture]
-public class ClickButtonTests : BaseTest
+namespace SampleAutoTest.Tests
 {
-    public ClickElementsPage Page()
+    [TestFixture]
+    public class ClickButtonTests : BaseTest
     {
-        driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
-        return new ClickElementsPage(driver);
-    }
+        public ClickElementsPage Page()
+        {
+            driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
+            return new ClickElementsPage(driver);
+        }
 
-    [Test]
-    public void ClickCatButton_WaitText()
-    {
-        var cbPage = Page();
+        [Test]
+        public void ClickCatButton_WaitText()
+        {
+            var cbPage = Page();
 
-        cbPage
-            .ClickCatButton();
-        string actual = cbPage.GetTextButtonClick();
+            cbPage
+                .ClickCatButton();
+            string actual = cbPage.GetTextButtonClick();
 
-        Assert.That(actual, Is.EqualTo(jsonContains.Animal.Cat));
-    }
+            Assert.That(actual, Is.EqualTo(jsonContains.Animal.Cat));
+        }
 
-    [Test]
-    public void ClickDogButton_WaitText()
-    {
-        var cbPage = Page();
+        [Test]
+        public void ClickDogButton_WaitText()
+        {
+            var cbPage = Page();
 
-        cbPage
-            .ClickDogButton();
-        string actual = cbPage.GetTextButtonClick();
+            cbPage
+                .ClickDogButton();
+            string actual = cbPage.GetTextButtonClick();
 
-        Assert.That(actual, Is.EqualTo(jsonContains.Animal.Dog));
-    }
+            Assert.That(actual, Is.EqualTo(jsonContains.Animal.Dog));
+        }
 
-    [Test]
-    public void ClickPigButton_WaitText()
-    {
-        var cbPage = Page();
+        [Test]
+        public void ClickPigButton_WaitText()
+        {
+            var cbPage = Page();
 
-        cbPage
-            .ClickPigButton();
-        string actual = cbPage.GetTextButtonClick();
+            cbPage
+                .ClickPigButton();
+            string actual = cbPage.GetTextButtonClick();
 
-        Assert.That(actual, Is.EqualTo(jsonContains.Animal.Pig));
-    }
+            Assert.That(actual, Is.EqualTo(jsonContains.Animal.Pig));
+        }
 
-    [Test]
-    public void ClickCowButton_WaitText()
-    {
-        var cbPage = Page();
+        [Test]
+        public void ClickCowButton_WaitText()
+        {
+            var cbPage = Page();
 
-        cbPage
-            .ClickCowButton();
-        string actual = cbPage.GetTextButtonClick();
+            cbPage
+                .ClickCowButton();
+            string actual = cbPage.GetTextButtonClick();
 
-        Assert.That(actual, Is.EqualTo(jsonContains.Animal.Cow));
+            Assert.That(actual, Is.EqualTo(jsonContains.Animal.Cow));
+        }
     }
 }
