@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SampleAutoTest.TestHelpers
+﻿namespace SampleAutoTest.TestHelpers
 {
     public class JsonContains
     {

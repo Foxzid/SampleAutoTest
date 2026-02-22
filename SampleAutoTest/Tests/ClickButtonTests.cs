@@ -1,7 +1,4 @@
-﻿using SampleAutoTest;
-using SampleAutoTest.Pages;
-using SampleAutoTest.TestHelper;
-using System.ComponentModel;
+﻿using SampleAutoTest.Pages;
 
 namespace SampleAutoTest.Tests
 {
