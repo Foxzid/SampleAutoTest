@@ -21,7 +21,7 @@ namespace SampleAutoTest.Pages
         /// Ожидает появления текста у элемента
         /// </summary>
         /// <param name="locator">Необходимый локатор</param>
-        /// <param name="expectedText">Необходимы текст</param>
+        /// <param name="expectedText">Необходимый текст</param>
         protected void WaitForTextToBe(By locator, string expectedText)
         {
             Wait.Until(driver =>
@@ -35,13 +35,34 @@ namespace SampleAutoTest.Pages
         /// Ожидание появления элемента
         /// </summary>
         /// <param name="locator"></param>
-        protected void WaitForElement(By locator) =>
+        protected void WaitForElement(By locator)
+        {
             Wait.Until(d =>
             {
                 var el = d.FindElement(locator);
                 return el.Displayed && el.Enabled;
             });
-
+        }
+        /// <summary>
+        /// Ожидание исчезновения элемента со страницы
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        public bool WaitElementInvisible(By locator)
+        {
+            return Wait.Until(d =>
+            {
+                try
+                {
+                    var element = d.FindElement(locator);
+                    return !element.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true;
+                }
+            });
+        }
         /// <summary>
         /// Клик по элементу
         /// </summary>

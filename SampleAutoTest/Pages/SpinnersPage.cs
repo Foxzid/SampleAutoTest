@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -10,8 +11,14 @@ namespace SampleAutoTest.Pages
     {
 
         /// <summary>
-        /// Страница клика по элементам
+        /// Спинер загрузки
         /// </summary>
-        private By ClickPage => By.Id("box");
+        private By _spinner => By.ClassName("spinner.spinner-hidden");
+
+        public bool WaitSpinnerInvisible()
+        {
+            bool res = WaitElementInvisible(_spinner);
+            return res;
+        }
     }
 }
