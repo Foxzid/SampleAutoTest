@@ -1,6 +1,5 @@
 ﻿using SampleAutoTest;
 using SampleAutoTest.Pages;
-using SampleAutoTest.TestHelper;
 using System.ComponentModel;
 
 
@@ -9,7 +8,7 @@ public class JavaScriptTests : BaseTest
 {
     public JavaScriptPage Page()
     {
-        driver.Navigate().GoToUrl($"{TestSettings.Url}");
+        driver.Navigate().GoToUrl($"{jsonContains.Url}");
         return new JavaScriptPage(driver);
     }
 

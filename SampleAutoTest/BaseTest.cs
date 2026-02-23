@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SampleAutoTest.TestHelper;
 using SampleAutoTest.TestHelpers;
 using System;
 using System.Collections.Generic;

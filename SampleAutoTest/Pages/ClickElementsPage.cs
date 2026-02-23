@@ -1,8 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 
 namespace SampleAutoTest.Pages
 {
@@ -18,6 +14,7 @@ namespace SampleAutoTest.Pages
         /// Кнопка кота
         /// </summary>
         private By CatButton => By.XPath("//button[@onclick = 'catSound()']");
+        //*[text()='Cat']
 
         /// <summary>
         /// Кнопка собаки
@@ -39,28 +36,36 @@ namespace SampleAutoTest.Pages
         /// </summary>
         private By TextMessage => By.Id("demo");
 
+        public ClickElementsPage ClickAnimal(string animal)
+        {
+            By elAnimal = By.XPath($"//button[normalize-space(.)='{animal}']");
+            WaitElementVisible(elAnimal);
+            Click(elAnimal);
+            return this;
+        }
+        
         public void ClickCatButton()
         {
             WaitElementVisible(CatButton);
-            _driver.FindElement(CatButton).Click();
+            Click(CatButton);
         }
 
         public void ClickDogButton()
         {
             WaitElementVisible(DogButton);
-            _driver.FindElement(DogButton).Click();
+            Click(DogButton);
         }
 
         public void ClickPigButton()
         {
             WaitElementVisible(PigButton);
-            _driver.FindElement(PigButton).Click();
+            Click(PigButton);
         }
 
         public void ClickCowButton()
         {
             WaitElementVisible(CowButton);
-            _driver.FindElement(CowButton).Click();
+            Click(CowButton);
         }
 
         public string GetTextButtonClick()

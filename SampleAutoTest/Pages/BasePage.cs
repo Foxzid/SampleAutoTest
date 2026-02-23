@@ -32,5 +32,10 @@ namespace SampleAutoTest.Pages
                 var el = d.FindElement(locator);
                 return el.Displayed && el.Enabled;
             });
+
+        public void Click(By locator)
+        {
+            _driver.FindElement(locator).Click();
+        }
     }
 }
