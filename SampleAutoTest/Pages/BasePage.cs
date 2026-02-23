@@ -9,26 +9,21 @@ namespace SampleAutoTest.Pages
 
         public BasePage(IWebDriver driver) => _driver = driver;
 
+        /// <summary>
+        /// Проверка наличия элемента без вызова исключения
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
         protected bool IsElementPresent(By locator) =>
             _driver.FindElements(locator).Count > 0;
 
+        /// <summary>
+        /// Проверка наличия элемента на странице
+        /// </summary>
+        /// <param name="locator"></param>
         protected void WaitElementVisible(By locator)
         {
             Wait.Until(d => d.FindElement(locator).Displayed);
-        }
-
-        /// <summary>
-        /// Ожидает появления текста у элемента
-        /// </summary>
-        /// <param name="locator">Необходимый локатор</param>
-        /// <param name="expectedText">Необходимый текст</param>
-        protected void WaitForTextToBe(By locator, string expectedText)
-        {
-            Wait.Until(driver =>
-            {
-                var element = driver.FindElement(locator);
-                return element.Text == expectedText;
-            });
         }
 
         /// <summary>

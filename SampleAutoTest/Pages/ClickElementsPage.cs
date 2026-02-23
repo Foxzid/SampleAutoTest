@@ -15,6 +15,11 @@ namespace SampleAutoTest.Pages
         /// </summary>
         private By TextMessage => By.Id("demo");
 
+        /// <summary>
+        /// Метод ждет появления кнопки и нажимает на нее
+        /// </summary>
+        /// <param name="animal"></param>
+        /// <returns></returns>
         public ClickElementsPage ClickAnimal(string animal)
         {
             By elAnimal = By.XPath($"//button[normalize-space(.)='{animal}']");
@@ -23,6 +28,10 @@ namespace SampleAutoTest.Pages
             return this;
         }
 
+        /// <summary>
+        /// Возвращает текст из элемента
+        /// </summary>
+        /// <returns></returns>
         public string GetTextButtonClick()
         {
             return _driver.FindElement(TextMessage).Text;

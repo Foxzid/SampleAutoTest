@@ -26,6 +26,11 @@ namespace SampleAutoTest.Pages
             return this;
         }
 
+        /// <summary>
+        /// Ожидает появления текста из элемента
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public bool WaitMessageText(string text)
         {
             bool res = Wait.Until(d => d.FindElement(_message).Text.Trim() == text);
