@@ -5,7 +5,7 @@ namespace SampleAutoTest.Pages
     public class BasePage
     {
         protected readonly IWebDriver _driver;
-        private WebDriverWait Wait => new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
+        protected WebDriverWait Wait => new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
 
         public BasePage(IWebDriver driver) => _driver = driver;
 
@@ -17,6 +17,11 @@ namespace SampleAutoTest.Pages
             Wait.Until(d => d.FindElement(locator).Displayed);
         }
 
+        /// <summary>
+        /// Ожидает появления текста у элемента
+        /// </summary>
+        /// <param name="locator">Необходимый локатор</param>
+        /// <param name="expectedText">Необходимы текст</param>
         protected void WaitForTextToBe(By locator, string expectedText)
         {
             Wait.Until(driver =>
@@ -26,6 +31,10 @@ namespace SampleAutoTest.Pages
             });
         }
 
+        /// <summary>
+        /// Ожидание появления элемента
+        /// </summary>
+        /// <param name="locator"></param>
         protected void WaitForElement(By locator) =>
             Wait.Until(d =>
             {
@@ -33,6 +42,10 @@ namespace SampleAutoTest.Pages
                 return el.Displayed && el.Enabled;
             });
 
+        /// <summary>
+        /// Клик по элементу
+        /// </summary>
+        /// <param name="locator">Элемент по которому совершается клик</param>
         public void Click(By locator)
         {
             _driver.FindElement(locator).Click();

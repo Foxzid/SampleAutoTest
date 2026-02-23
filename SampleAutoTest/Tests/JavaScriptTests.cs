@@ -2,25 +2,27 @@
 using SampleAutoTest.Pages;
 using System.ComponentModel;
 
-
-[TestFixture]
-public class JavaScriptTests : BaseTest
+namespace SampleAutoTest.Tests
 {
-    public JavaScriptPage Page()
+    [TestFixture]
+    public class JavaScriptTests : BaseTest
     {
-        driver.Navigate().GoToUrl($"{jsonContains.Url}");
-        return new JavaScriptPage(driver);
+        private JavaScriptPage Page()
+        {
+            driver.Navigate().GoToUrl($"{jsonContains.Url}/javascript-delays/");
+            return new JavaScriptPage(driver);
+        }
+
+        [Test]
+        public void OpenJavaScriptPage_ClickStart_WaitMessage()
+        {
+            var jsPage = Page();
+
+            bool actual = jsPage
+                .StartRocket()
+                .WaitMessageText("Liftoff!");
+
+            Assert.That(actual, Is.True);
+        }
     }
-
-    //[Test]
-    //public void OpenJavaScriptPage_ClickStart_WaitMessage()
-    //{
-    //    var jsPage = Page();
-
-    //    jsPage
-    //        .StartRocket();
-    //    string actual = jsPage.WaitMessageText();
-
-    //    Assert.That(actual, Is.EqualTo("Liftoff!"));
-    //}
 }
