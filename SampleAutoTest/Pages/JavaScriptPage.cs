@@ -21,7 +21,7 @@ namespace SampleAutoTest.Pages
         /// </summary>
         public JavaScriptPage StartRocket()
         {
-            WaitForElement(_startButton);
+            WaitElement(_startButton);
             Click(_startButton);
             return this;
         }

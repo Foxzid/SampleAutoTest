@@ -27,18 +27,6 @@ namespace SampleAutoTest.Pages
         }
 
         /// <summary>
-        /// Ожидание появления элемента
-        /// </summary>
-        /// <param name="locator"></param>
-        protected void WaitForElement(By locator)
-        {
-            Wait.Until(d =>
-            {
-                var el = d.FindElement(locator);
-                return el.Displayed && el.Enabled;
-            });
-        }
-        /// <summary>
         /// Ожидание исчезновения элемента со страницы
         /// </summary>
         /// <param name="locator"></param>
@@ -75,13 +63,15 @@ namespace SampleAutoTest.Pages
         /// </summary>
         protected IWebElement WaitElement(By locator)
         {
-            Wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            Wait.IgnoreExceptionTypes(
+                typeof(NoSuchElementException),
+                typeof(StaleElementReferenceException));
 
             return Wait.Until(drv => {
                 try
                 {
                     var el = drv.FindElement(locator);
-                    return el.Displayed ? el : null;
+                    return (el.Displayed && el.Enabled) ? el : null;
                 }
                 catch (NoSuchElementException)
                 {

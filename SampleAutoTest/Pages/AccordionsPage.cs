@@ -18,9 +18,10 @@ namespace SampleAutoTest.Pages
         
         public bool WaitAccordionParagraph()
         {
-            WaitElementVisible(_accordionBtn);
+            WaitElement(_accordionBtn);
             Click(_accordionBtn);
-            if(WaitElementInvisible(_accordionParagraph)==true)
+            var el = WaitElement(_accordionParagraph);
+            if(el!=null)
             {
                 return true;
             }
