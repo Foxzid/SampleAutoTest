@@ -1,9 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
@@ -17,8 +12,7 @@ namespace SampleAutoTest.Pages
 
         public bool WaitSpinnerInvisible()
         {
-            bool res = WaitElementInvisible(_spinner);
-            return res;
+            return WaitElementInvisible(_spinner);
         }
     }
 }
