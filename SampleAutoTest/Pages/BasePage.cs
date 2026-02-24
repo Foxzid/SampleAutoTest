@@ -58,6 +58,46 @@ namespace SampleAutoTest.Pages
                 }
             });
         }
+
+        /// <summary>
+        /// Совершает клик по элементу
+        /// </summary>
+        public BasePage ClickElement(By locator)
+        {
+            Wait.Until(drv => {
+                var el = drv.FindElement(locator);
+                return el.Displayed && el.Enabled ? el : null;
+            })?.Click();
+            return this;
+        }
+        /// <summary>
+        /// Ожидание появления элемента
+        /// </summary>
+        protected IWebElement WaitElement(By locator)
+        {
+            Wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
+            return Wait.Until(drv => {
+                try
+                {
+                    var el = drv.FindElement(locator);
+                    return el.Displayed ? el : null;
+                }
+                catch (NoSuchElementException)
+                {
+                    return null;
+                }
+            });
+        }
+        /// <summary>
+        /// Совершает клик по элементу и ожидает появление другого элемента
+        /// </summary>
+        public BasePage ClickAndWait(By clickLocator, By waitLocator)
+        {
+            ClickElement(clickLocator);
+            WaitElement(waitLocator);
+            return this;
+        }
         /// <summary>
         /// Клик по элементу
         /// </summary>
