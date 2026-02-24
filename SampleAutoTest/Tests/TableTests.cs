@@ -9,8 +9,8 @@ namespace SampleAutoTest.Tests
     {
         private TablePage Page()
         {
-            driver.Navigate().GoToUrl($"{jsonContains.Url}/tables//");
-            return new TablePage(driver);
+            _driver.Navigate().GoToUrl($"{jsonContains.Url}/tables//");
+            return new TablePage(_driver);
         }
 
         [TestCase("Oranges", "$3.99")]

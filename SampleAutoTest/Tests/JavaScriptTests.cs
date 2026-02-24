@@ -9,8 +9,8 @@ namespace SampleAutoTest.Tests
     {
         private JavaScriptPage Page()
         {
-            driver.Navigate().GoToUrl($"{jsonContains.Url}/javascript-delays/");
-            return new JavaScriptPage(driver);
+            _driver.Navigate().GoToUrl($"{jsonContains.Url}/javascript-delays/");
+            return new JavaScriptPage(_driver);
         }
 
         [Test]

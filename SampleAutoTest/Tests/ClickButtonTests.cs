@@ -7,8 +7,8 @@ namespace SampleAutoTest.Tests
     {
         public ClickElementsPage Page()
         {
-            driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
-            return new ClickElementsPage(driver);
+            _driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
+            return new ClickElementsPage(_driver);
         }
 
         [TestCase("Cat", "Meow!")]

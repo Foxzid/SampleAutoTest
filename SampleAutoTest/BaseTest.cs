@@ -9,13 +9,13 @@ namespace SampleAutoTest
 {
     public class BaseTest
     {
-        protected IWebDriver driver;
+        protected IWebDriver _driver;
         protected JsonContains jsonContains;
 
         [OneTimeSetUp]
         protected void OneTimeSetUp()
         {
-            driver = new ChromeDriver();
+            _driver = new ChromeDriver();
 
             InitializeData();
         }
@@ -24,7 +24,7 @@ namespace SampleAutoTest
         protected void SetUp()
         {
             var options = new ChromeOptions();
-            driver.Manage().Window.Maximize();
+            _driver.Manage().Window.Maximize();
         }
 
         private void InitializeData()
@@ -36,13 +36,17 @@ namespace SampleAutoTest
         [TearDown]
         protected void TearDown()
         {
-            driver.Manage().Cookies.DeleteAllCookies();
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("window.localStorage.clear();");
+            js.ExecuteScript("window.sessionStorage.clear();");
+            _driver.Manage().Cookies.DeleteAllCookies();
+            _driver.Navigate().Refresh();
         }
 
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
-            driver.Dispose();
+            _driver.Dispose();
         }
         
     }

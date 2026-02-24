@@ -9,8 +9,8 @@ namespace SampleAutoTest.Tests
     {
         private SpinnersPage Page()
         {
-            driver.Navigate().GoToUrl($"{jsonContains.Url}/spinners/");
-            return new SpinnersPage(driver);
+            _driver.Navigate().GoToUrl($"{jsonContains.Url}/spinners/");
+            return new SpinnersPage(_driver);
         }
 
         [Test]
