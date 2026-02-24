@@ -33,14 +33,18 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         public bool WaitElementInvisible(By locator)
         {
-            return Wait.Until(d =>
+            return Wait.Until(drv =>
             {
                 try
                 {
-                    var element = d.FindElement(locator);
-                    return !element.Displayed;
+                    var el = drv.FindElement(locator);
+                    return !el.Displayed;
                 }
                 catch (NoSuchElementException)
+                {
+                    return true;
+                }
+                catch (StaleElementReferenceException)
                 {
                     return true;
                 }
