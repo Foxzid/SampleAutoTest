@@ -31,7 +31,28 @@ namespace SampleAutoTest.Pages
         /// </summary>
         private By _formModalWindow => By.Id("popmake-674");
 
+        /// <summary>
+        /// Поле ввоода имени в модальном окне
+        /// </summary>
+        private By _nameFieldFormModalWindow => By.Id("g1051-name");
+
+        /// <summary>
+        /// Поле ввоода почты в модальном окне
+        /// </summary>
+        private By _emailFieldFormModalWindow => By.Id("g1051-email");
+
+        /// <summary>
+        /// Поле ввоода сообщения в модальном окне
+        /// </summary>
+        private By _messageFieldFormModalWindow => By.Id("g1051-message");
+
+        /// <summary>
+        /// Поле ввоода сообщения в модальном окне
+        /// </summary>
+        private By _submitBtnFormModalWindow => By.ClassName("pushbutton-wide");
+
         
+
 
         /// <summary>
         /// Проверяет, появилось ли простое модальное окно в течение заданного времени
