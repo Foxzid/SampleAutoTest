@@ -7,27 +7,34 @@ namespace SampleAutoTest.Pages
     {
 
         /// <summary>
-        /// Кнопка запуска
+        /// Заголовок страницы
         /// </summary>
         private By _title => By.XPath("//h1");
 
         /// <summary>
-        /// Текст отчета времени
+        /// Кнопка открытия паростого модального окна
         /// </summary>
         private By _simpleModalBtn => By.Id("simpleModal");
 
         /// <summary>
-        /// Текст отчета времени
+        /// Простое модальное окно
         /// </summary>
         private By _simpleModalWindow => By.Id("popmake-1318");
 
         /// <summary>
-        /// Текст отчета времени
+        /// Кнопка модального окна с формой
         /// </summary>
         private By _formModalBtn => By.Id("formModal");
 
         /// <summary>
-        /// Ожидает появления кнопки старта на странице и нажимает на нее
+        /// Модальное окно с формой
+        /// </summary>
+        private By _formModalWindow => By.Id("popmake-674");
+
+        
+
+        /// <summary>
+        /// Проверяет, появилось ли простое модальное окно в течение заданного времени
         /// </summary>
         public bool OpenSimplModal()
         {
@@ -37,5 +44,15 @@ namespace SampleAutoTest.Pages
             return el;
         }
 
+        /// <summary>
+        /// Открывает модальное окно с формой
+        /// </summary>
+        public ModalsPage OpenFormModal()
+        {
+            WaitElement(_title);
+            ClickElement(_formModalBtn);
+            WaitElementInvisible(_formModalWindow);
+            return this;
+        }
     }
 }
