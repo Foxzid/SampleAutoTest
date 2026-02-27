@@ -19,7 +19,7 @@ namespace SampleAutoTest.Pages
         public bool WaitAccordionParagraph()
         {
             WaitElement(_accordionBtn);
-            Click(_accordionBtn);
+            ClickElement(_accordionBtn);
             var el = WaitElement(_accordionParagraph);
             if(el!=null)
             {

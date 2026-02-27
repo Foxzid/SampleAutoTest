@@ -61,7 +61,7 @@ namespace SampleAutoTest.Pages
         {
             WaitElement(_title);
             ClickElement(_simpleModalBtn);
-            bool el = WaitElementInvisible(_simpleModalWindow);
+            bool el = WaitElementVisible(_simpleModalWindow);
             return el;
         }
 

@@ -21,9 +21,9 @@ namespace SampleAutoTest.Pages
         /// Проверка наличия элемента на странице
         /// </summary>
         /// <param name="locator"></param>
-        protected void WaitElementVisible(By locator)
+        protected bool WaitElementVisible(By locator)
         {
-            Wait.Until(d => d.FindElement(locator).Displayed);
+            return Wait.Until(d => d.FindElement(locator).Displayed);
         }
 
         /// <summary>
@@ -81,6 +81,10 @@ namespace SampleAutoTest.Pages
                 {
                     return null;
                 }
+                catch (StaleElementReferenceException)
+                {
+                    return null;
+                }
             });
         }
         /// <summary>
@@ -91,14 +95,6 @@ namespace SampleAutoTest.Pages
             ClickElement(clickLocator);
             WaitElement(waitLocator);
             return this;
-        }
-        /// <summary>
-        /// Клик по элементу
-        /// </summary>
-        /// <param name="locator">Элемент по которому совершается клик</param>
-        public void Click(By locator)
-        {
-            _driver.FindElement(locator).Click();
         }
     }
 }

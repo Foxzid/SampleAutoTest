@@ -24,7 +24,7 @@ namespace SampleAutoTest.Pages
         {
             By elAnimal = By.XPath($"//button[normalize-space(.)='{animal}']");
             WaitElementVisible(elAnimal);
-            Click(elAnimal);
+            ClickElement(elAnimal);
             return this;
         }
 
