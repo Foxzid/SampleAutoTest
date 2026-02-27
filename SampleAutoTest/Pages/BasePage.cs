@@ -96,5 +96,23 @@ namespace SampleAutoTest.Pages
             WaitElement(waitLocator);
             return this;
         }
+
+        /// <summary>
+        /// Вводит в поле string значение
+        /// </summary>
+        public void SendKey(By locator, string value)
+        {
+            var elem = WaitElement(locator);
+            elem.Clear();
+            elem.SendKeys(value);
+        }
+
+        /// <summary>
+        /// Вводит в поле string значение
+        /// </summary>
+        public string GetTextElement(By locator)
+        {
+            return _driver.FindElement(locator).Text;
+        }
     }
 }
