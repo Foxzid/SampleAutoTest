@@ -2,12 +2,10 @@
 using OpenQA.Selenium.Support.UI;
 namespace SampleAutoTest.Pages
 {
-    public class BasePage
+    public class BasePage(IWebDriver driver)
     {
-        protected readonly IWebDriver _driver;
+        protected readonly IWebDriver _driver = driver;
         protected WebDriverWait Wait => new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
-
-        public BasePage(IWebDriver driver) => _driver = driver;
 
         /// <summary>
         /// Проверка наличия элемента без вызова исключения
