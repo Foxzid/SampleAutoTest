@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 namespace SampleAutoTest.Pages
 {
@@ -54,10 +55,22 @@ namespace SampleAutoTest.Pages
         /// </summary>
         public BasePage ClickElement(By locator)
         {
-            Wait.Until(drv => {
-                var el = drv.FindElement(locator);
-                return el.Displayed && el.Enabled ? el : null;
-            })?.Click();
+            var elem = WaitElement(locator);
+            try
+            {
+                elem.Click();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                try
+                {
+                    new Actions(_driver!).MoveToElement(elem).Click().Perform();
+                }
+                catch (Exception)
+                {
+                    ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", elem);
+                }
+            }
             return this;
         }
         /// <summary>
