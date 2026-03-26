@@ -1,10 +1,12 @@
 ﻿using Allure.Net.Commons;
+using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
 namespace SampleAutoTest.Tests
 {
     [TestFixture]
+    [AllureNUnit]
     public class SpinnerTests : BaseTest
     {
         private SpinnersPage Page()

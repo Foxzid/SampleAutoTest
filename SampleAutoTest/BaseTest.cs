@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.Net.Commons;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SampleAutoTest.TestHelpers;
 
@@ -33,6 +34,12 @@ namespace SampleAutoTest
         [TearDown]
         protected void TearDown()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+            {
+                var screenshot = ((ITakesScreenshot)_driver).GetScreenshot();
+                byte[] content = screenshot.AsByteArray;
+                AllureApi.AddAttachment("Screenshot на момент ошибки", "image/png", content);
+            }
             IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
             js.ExecuteScript("window.localStorage.clear();");
             js.ExecuteScript("window.sessionStorage.clear();");
