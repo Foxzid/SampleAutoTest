@@ -1,6 +1,6 @@
-﻿using SampleAutoTest;
+﻿using Allure.Net.Commons;
+using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
-using System.ComponentModel;
 
 namespace SampleAutoTest.Tests
 {
@@ -14,6 +14,10 @@ namespace SampleAutoTest.Tests
         }
 
         [Test]
+        [AllureName("Ожидание исчезновения спинера при загрузке страницы")]
+        [AllureDescription("Тест ожидает исчезновения спинера при загрузке страницы")]
+        [AllureTag("Spinners", "UI")]
+        [AllureSeverity(SeverityLevel.minor)]
         public void SpinnerPage_WaitSpinnerInvisible()
         {
             var spinnerPage = Page();
