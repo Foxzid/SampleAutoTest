@@ -1,4 +1,6 @@
-﻿using SampleAutoTest.Pages;
+﻿using Allure.Net.Commons;
+using Allure.NUnit.Attributes;
+using SampleAutoTest.Pages;
 
 namespace SampleAutoTest.Tests
 {
@@ -12,6 +14,10 @@ namespace SampleAutoTest.Tests
         }
 
         [Test]
+        [AllureName("Проверка открытия простого модального окна")]
+        [AllureDescription("Тест проверяет отображение простого модального окна после нажатия накнопку")]
+        [AllureTag("Modals", "UI")]
+        [AllureSeverity(SeverityLevel.minor)]
         public void ModalsPage_OpenSimpleModal_SimpleModalIsVisable()
         {
             var page = Page();
@@ -23,6 +29,10 @@ namespace SampleAutoTest.Tests
         }
 
         [Test]
+        [AllureName("Валидация данных при отправке формы в модальном окне")]
+        [AllureDescription("Тест сравнивает данные из блока информации с введенными ранее")]
+        [AllureTag("Modals", "UI")]
+        [AllureSeverity(SeverityLevel.critical)]
         public void ModalsPage_OpenFormModal_SendForm()
         {
             var page = Page();
