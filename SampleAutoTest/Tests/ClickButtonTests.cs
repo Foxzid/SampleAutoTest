@@ -1,4 +1,6 @@
-﻿using SampleAutoTest.Pages;
+﻿using Allure.Net.Commons;
+using Allure.NUnit.Attributes;
+using SampleAutoTest.Pages;
 
 namespace SampleAutoTest.Tests
 {
@@ -15,6 +17,10 @@ namespace SampleAutoTest.Tests
         [TestCase("Dog", "Woof!")]
         [TestCase("Pig", "Oink!")]
         [TestCase("Cow", "Moo!")]
+        [AllureName("Проверка отображения текста после наждатия на кнопку")]
+        [AllureDescription("Тест сравнивает полученный и ожидаемый текст после нажатия на кнопку")]
+        [AllureTag("Сlick-events", "UI")]
+        [AllureSeverity(SeverityLevel.minor)]
         public void ClickEventsPage_ClickAnimalButton_WaitText(string animal, string animalSay)
         {
             var cbPage = Page();
