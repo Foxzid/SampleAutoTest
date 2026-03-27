@@ -68,6 +68,8 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Совершает клик по элементу
         /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
         public BasePage ClickElement(By locator)
         {
             var elem = WaitElement(locator);
@@ -91,6 +93,8 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Ожидание появления элемента
         /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
         protected IWebElement WaitElement(By locator)
         {
             Wait.IgnoreExceptionTypes(
@@ -116,6 +120,9 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Совершает клик по элементу и ожидает появление другого элемента
         /// </summary>
+        /// <param name="clickLocator">Элемент, на который необходимо кликнуть</param>
+        /// <param name="clickLocator">Элемент, который необходимо дождаться</param>
+        /// <returns></returns>
         public BasePage ClickAndWait(By clickLocator, By waitLocator)
         {
             ClickElement(clickLocator);
@@ -126,6 +133,9 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Вводит в поле string значение
         /// </summary>
+        /// <param name="locator">Поле для ввода значения</param>
+        /// <param name="value">string значение</param>
+        /// <returns></returns>
         public void SendKey(By locator, string value)
         {
             var elem = WaitElement(locator);
@@ -134,8 +144,10 @@ namespace SampleAutoTest.Pages
         }
 
         /// <summary>
-        /// Вводит в поле string значение
+        /// Возвращает текст из элемента
         /// </summary>
+        /// <param name="locator">Элемент, из которого необходимо получить текст</param>
+        /// <returns></returns
         public string GetTextElement(By locator)
         {
             return _driver.FindElement(locator).Text;
