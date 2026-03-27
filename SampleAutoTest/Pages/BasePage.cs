@@ -6,7 +6,7 @@ namespace SampleAutoTest.Pages
     public class BasePage(IWebDriver driver)
     {
         protected readonly IWebDriver _driver = driver;
-        protected WebDriverWait Wait => new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
+        protected WebDriverWait Wait => new(_driver, TimeSpan.FromSeconds(15));
 
         /// <summary>
         /// Проверка наличия элемента без вызова исключения
