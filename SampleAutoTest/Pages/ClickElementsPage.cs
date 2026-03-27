@@ -4,12 +4,6 @@ namespace SampleAutoTest.Pages
 {
     public class ClickElementsPage(IWebDriver driver) : BasePage(driver)
     {
-
-        /// <summary>
-        /// Страница клика по элементам
-        /// </summary>
-        private By ClickPage => By.Id("box");
-
         /// <summary>
         /// Текст, который появится после нажатия на кнопку
         /// </summary>
@@ -34,7 +28,7 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         public string GetTextButtonClick()
         {
-            return _driver.FindElement(TextMessage).Text;
+            return GetTextElement(TextMessage);
         }
     }
 }

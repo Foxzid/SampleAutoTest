@@ -8,12 +8,12 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// опка открытия аккордиона
         /// </summary>
-        private By _accordionBtn => By.ClassName("wp-block-coblocks-accordion-item__title");
+        private By AccordionBtn => By.ClassName("wp-block-coblocks-accordion-item__title");
 
         /// <summary>
         /// опка открытия аккордиона
         /// </summary>
-        private By _accordionParagraph => By.ClassName("wp-block-paragraph");
+        private By AccordionParagraph => By.ClassName("wp-block-paragraph");
 
         /// <summary>
         /// Открытие аккордеона и ожидание непутого значения в аккордеоне
@@ -21,9 +21,9 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         public bool WaitAccordionParagraph()
         {
-            WaitElement(_accordionBtn);
-            ClickElement(_accordionBtn);
-            var el = WaitElement(_accordionParagraph);
+            WaitElement(AccordionBtn);
+            ClickElement(AccordionBtn);
+            var el = WaitElement(AccordionParagraph);
             if(el!=null)
             {
                 return true;
