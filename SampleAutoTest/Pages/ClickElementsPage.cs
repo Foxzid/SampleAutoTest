@@ -7,7 +7,7 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Текст, который появится после нажатия на кнопку
         /// </summary>
-        private By TextMessage => By.Id("demo");
+        private readonly By _textMessage = By.Id("demo");
 
         /// <summary>
         /// Метод ждет появления кнопки и нажимает на нее
@@ -28,7 +28,7 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         public string GetTextButtonClick()
         {
-            return GetTextElement(TextMessage);
+            return GetTextElement(_textMessage);
         }
     }
 }

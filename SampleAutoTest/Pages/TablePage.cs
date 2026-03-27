@@ -4,10 +4,10 @@ namespace SampleAutoTest.Pages
 {
     public class TablePage(IWebDriver driver):BasePage(driver)
     {
-        private By Table => By.ClassName("wp-block-table");
+        private readonly By _table = By.ClassName("wp-block-table");
         public string GetItemPrice(string item)
         {
-            WaitElementVisible(Table);
+            WaitElementVisible(_table);
             return GetTextElement(By.XPath($"//td[text()='{item}']/following-sibling::td"));
         }
     }
