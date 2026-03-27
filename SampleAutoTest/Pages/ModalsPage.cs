@@ -9,74 +9,71 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Заголовок страницы
         /// </summary>
-        private By _title => By.XPath("//h1");
+        private By Title => By.XPath("//h1");
 
         /// <summary>
         /// Кнопка открытия паростого модального окна
         /// </summary>
-        private By _simpleModalBtn => By.Id("simpleModal");
+        private By SimpleModalBtn => By.Id("simpleModal");
 
         /// <summary>
         /// Простое модальное окно
         /// </summary>
-        private By _simpleModalWindow => By.Id("popmake-1318");
+        private By SimpleModalWindow => By.Id("popmake-1318");
 
         /// <summary>
         /// Кнопка модального окна с формой
         /// </summary>
-        private By _formModalBtn => By.Id("formModal");
+        private By FormModalBtn => By.Id("formModal");
 
         /// <summary>
         /// Модальное окно с формой
         /// </summary>
-        private By _formModalWindow => By.Id("popmake-674");
+        private By FormModalWindow => By.Id("popmake-674");
 
         /// <summary>
         /// Поле ввоода имени в модальном окне
         /// </summary>
-        private By _nameFieldFormModalWindow => By.Id("g1051-name");
+        private By NameFieldFormModalWindow => By.Id("g1051-name");
 
         /// <summary>
         /// Поле ввоода почты в модальном окне
         /// </summary>
-        private By _emailFieldFormModalWindow => By.Id("g1051-email");
+        private By EmailFieldFormModalWindow => By.Id("g1051-email");
 
         /// <summary>
         /// Поле ввоода сообщения в модальном окне
         /// </summary>
-        private By _messageFieldFormModalWindow => By.Id("contact-form-comment-g1051-message");
+        private By MessageFieldFormModalWindow => By.Id("contact-form-comment-g1051-message");
 
         /// <summary>
         /// Поле ввоода сообщения в модальном окне
         /// </summary>
-        private By _submitBtnFormModalWindow => By.ClassName("pushbutton-wide");
+        private By SubmitBtnFormModalWindow => By.ClassName("pushbutton-wide");
 
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        private By _cartName => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Name:']]/following-sibling::div[1]");
+        private By CartName => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Name:']]/following-sibling::div[1]");
 
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        private By _cartEmail => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Email:']]/following-sibling::div[1]");
+        private By CartEmail => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Email:']]/following-sibling::div[1]");
 
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        private By _cartMessage => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Message:']]/following-sibling::div[1]");
-
-
-
+        private By CartMessage => By.XPath("//div[@class='field-name-wrapper'][.//div[text()='Message:']]/following-sibling::div[1]");
 
         /// <summary>
         /// Проверяет, появилось ли простое модальное окно в течение заданного времени
         /// </summary>
         public bool OpenSimplModal()
         {
-            WaitElement(_title);
-            ClickElement(_simpleModalBtn);
-            bool el = WaitElementVisible(_simpleModalWindow);
+            WaitElement(Title);
+            ClickElement(SimpleModalBtn);
+            bool el = WaitElementVisible(SimpleModalWindow);
             return el;
         }
 
@@ -85,52 +82,52 @@ namespace SampleAutoTest.Pages
         /// </summary>
         public ModalsPage OpenFormModal()
         {
-            WaitElement(_title);
-            ClickElement(_formModalBtn);
-            WaitElement(_formModalWindow);
+            WaitElement(Title);
+            ClickElement(FormModalBtn);
+            WaitElement(FormModalWindow);
             return this;
         }
 
         public string SendNameModalForm(string name)
         {
-            WaitElement(_nameFieldFormModalWindow);
-            SendKey(_nameFieldFormModalWindow, name);
+            WaitElement(NameFieldFormModalWindow);
+            SendKey(NameFieldFormModalWindow, name);
             return name;
         }
 
         public string SendEmailModalForm(string email)
         {
-            WaitElement(_emailFieldFormModalWindow);
-            SendKey(_emailFieldFormModalWindow, email);
+            WaitElement(EmailFieldFormModalWindow);
+            SendKey(EmailFieldFormModalWindow, email);
             return email;
         }
 
         public string SendMessageModalForm(string message)
         {
-            WaitElement(_messageFieldFormModalWindow);
-            SendKey(_messageFieldFormModalWindow, message);
+            WaitElement(MessageFieldFormModalWindow);
+            SendKey(MessageFieldFormModalWindow, message);
             return message;
         }
 
         public ModalsPage ClickSubmitModalForm()
         {
-            WaitElement(_submitBtnFormModalWindow);
-            ClickAndWait(_submitBtnFormModalWindow, _cartName);
+            WaitElement(SubmitBtnFormModalWindow);
+            ClickAndWait(SubmitBtnFormModalWindow, CartName);
             return this;
         }
         public string ActualNameModalForm()
         {
-            return GetTextElement(_cartName);
+            return GetTextElement(CartName);
         }
 
         public string ActualEmailModalForm()
         {
-            return GetTextElement(_cartEmail);
+            return GetTextElement(CartEmail);
         }
 
         public string ActualMessageModalForm()
         {
-            return GetTextElement(_cartMessage);
+            return GetTextElement(CartMessage);
         }
 
     }

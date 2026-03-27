@@ -8,11 +8,11 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Спинер загрузки
         /// </summary>
-        private By _spinner => By.ClassName("spinner.spinner-hidden");
+        private By Spinner => By.ClassName("spinner.spinner-hidden");
 
         public bool WaitSpinnerInvisible()
         {
-            return WaitElementInvisible(_spinner);
+            return WaitElementInvisible(Spinner);
         }
     }
 }

@@ -9,20 +9,20 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Кнопка запуска
         /// </summary>
-        private By _startButton => By.Id("start");
+        private By StartButton => By.Id("start");
 
         /// <summary>
         /// Текст отчета времени
         /// </summary>
-        private By _message => By.Id("delay");
+        private By Message => By.Id("delay");
 
         /// <summary>
         /// Ожидает появления кнопки старта на странице и нажимает на нее
         /// </summary>
         public JavaScriptPage StartRocket()
         {
-            WaitElement(_startButton);
-            ClickElement(_startButton);
+            WaitElement(StartButton);
+            ClickElement(StartButton);
             return this;
         }
 
@@ -33,7 +33,7 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         public bool WaitMessageText(string text)
         {
-            bool res = Wait.Until(d => d.FindElement(_message).Text.Trim() == text);
+            bool res = Wait.Until(d => d.FindElement(Message).Text.Trim() == text);
             return res;
         }
             
