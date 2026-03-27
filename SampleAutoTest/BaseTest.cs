@@ -14,15 +14,14 @@ namespace SampleAutoTest
         protected void OneTimeSetUp()
         {
             _driver = new ChromeDriver();
+            _driver.Manage().Window.Maximize();
 
             InitializeData();
         }
 
         [SetUp]
         protected void SetUp()
-        {
-            var options = new ChromeOptions();
-            _driver.Manage().Window.Maximize();
+        {            
         }
 
         private void InitializeData()

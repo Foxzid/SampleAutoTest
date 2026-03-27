@@ -15,7 +15,10 @@ namespace SampleAutoTest.Pages
         /// </summary>
         private By _accordionParagraph => By.ClassName("wp-block-paragraph");
 
-        
+        /// <summary>
+        /// Открытие аккордеона и ожидание непутого значения в аккордеоне
+        /// </summary>
+        /// <returns></returns>
         public bool WaitAccordionParagraph()
         {
             WaitElement(_accordionBtn);

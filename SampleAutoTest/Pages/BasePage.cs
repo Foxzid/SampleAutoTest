@@ -31,11 +31,11 @@ namespace SampleAutoTest.Pages
                 }
                 catch (NoSuchElementException)
                 {
-                    return true;
+                    return false;
                 }
                 catch (StaleElementReferenceException)
                 {
-                    return true;
+                    return false;
                 }
             });
         }
@@ -97,10 +97,6 @@ namespace SampleAutoTest.Pages
         /// <returns></returns>
         protected IWebElement WaitElement(By locator)
         {
-            Wait.IgnoreExceptionTypes(
-                typeof(NoSuchElementException),
-                typeof(StaleElementReferenceException));
-
             return Wait.Until(drv => {
                 try
                 {
@@ -150,7 +146,7 @@ namespace SampleAutoTest.Pages
         /// <returns></returns
         public string GetTextElement(By locator)
         {
-            return _driver.FindElement(locator).Text;
+            return WaitElement(locator).Text;
         }
     }
 }
