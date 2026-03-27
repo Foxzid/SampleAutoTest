@@ -22,7 +22,22 @@ namespace SampleAutoTest.Pages
         /// <param name="locator"></param>
         protected bool WaitElementVisible(By locator)
         {
-            return Wait.Until(d => d.FindElement(locator).Displayed);
+            return Wait.Until(drv =>
+            {
+                try
+                {
+                    var el = drv.FindElement(locator);
+                    return el.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return true;
+                }
+            });
         }
 
         /// <summary>
