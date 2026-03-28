@@ -1,0 +1,152 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+namespace SampleAutoTest.Pages
+{
+    public class BasePage(IWebDriver driver)
+    {
+        protected readonly IWebDriver _driver = driver;
+        protected WebDriverWait Wait => new(_driver, TimeSpan.FromSeconds(15));
+
+        /// <summary>
+        /// Проверка наличия элемента без вызова исключения
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        protected bool IsElementPresent(By locator) =>
+            _driver.FindElements(locator).Count > 0;
+
+        /// <summary>
+        /// Проверка наличия элемента на странице
+        /// </summary>
+        /// <param name="locator"></param>
+        protected bool WaitElementVisible(By locator)
+        {
+            return Wait.Until(drv =>
+            {
+                try
+                {
+                    var el = drv.FindElement(locator);
+                    return el.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Ожидание исчезновения элемента со страницы
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        public bool WaitElementInvisible(By locator)
+        {
+            return Wait.Until(drv =>
+            {
+                try
+                {
+                    var el = drv.FindElement(locator);
+                    return !el.Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return true;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Совершает клик по элементу
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        public BasePage ClickElement(By locator)
+        {
+            var elem = WaitElement(locator);
+            try
+            {
+                elem.Click();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                try
+                {
+                    new Actions(_driver!).MoveToElement(elem).Click().Perform();
+                }
+                catch (Exception)
+                {
+                    ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", elem);
+                }
+            }
+            return this;
+        }
+        /// <summary>
+        /// Ожидание появления элемента
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        protected IWebElement WaitElement(By locator)
+        {
+            return Wait.Until(drv => {
+                try
+                {
+                    var el = drv.FindElement(locator);
+                    return (el.Displayed && el.Enabled) ? el : null;
+                }
+                catch (NoSuchElementException)
+                {
+                    return null;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return null;
+                }
+            });
+        }
+        /// <summary>
+        /// Совершает клик по элементу и ожидает появление другого элемента
+        /// </summary>
+        /// <param name="clickLocator">Элемент, на который необходимо кликнуть</param>
+        /// <param name="clickLocator">Элемент, который необходимо дождаться</param>
+        /// <returns></returns>
+        public BasePage ClickAndWait(By clickLocator, By waitLocator)
+        {
+            ClickElement(clickLocator);
+            WaitElement(waitLocator);
+            return this;
+        }
+
+        /// <summary>
+        /// Вводит в поле string значение
+        /// </summary>
+        /// <param name="locator">Поле для ввода значения</param>
+        /// <param name="value">string значение</param>
+        /// <returns></returns>
+        public void SendKey(By locator, string value)
+        {
+            var elem = WaitElement(locator);
+            elem.Clear();
+            elem.SendKeys(value);
+        }
+
+        /// <summary>
+        /// Возвращает текст из элемента
+        /// </summary>
+        /// <param name="locator">Элемент, из которого необходимо получить текст</param>
+        /// <returns></returns
+        public string GetTextElement(By locator)
+        {
+            return WaitElement(locator).Text;
+        }
+    }
+}
