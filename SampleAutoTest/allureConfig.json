@@ -1,8 +1,0 @@
-{
-  "allure": {
-    "directory": "../../../allure-results",
-    "links": [
-      "https://practice-automation.com{link}"
-    ]
-  }
-}
