@@ -9,7 +9,7 @@ namespace SampleAutoTest.Tests
     [AllureNUnit]
     public class ClickButtonTests : BaseTest
     {
-        public ClickElementsPage Page()
+        private ClickElementsPage Page()
         {
             _driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
             return new ClickElementsPage(_driver);

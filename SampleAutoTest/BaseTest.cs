@@ -5,7 +5,7 @@ using SampleAutoTest.TestHelpers;
 
 namespace SampleAutoTest
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
         protected IWebDriver _driver;
         protected JsonContains jsonContains;
