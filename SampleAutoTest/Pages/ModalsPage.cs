@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace SampleAutoTest.Pages
@@ -69,6 +70,7 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Проверяет, появилось ли простое модальное окно в течение заданного времени
         /// </summary>
+        [AllureStep("Открыть простое модальное окно")]
         public bool OpenSimplModal()
         {
             WaitElement(_title);
@@ -80,6 +82,7 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Открывает модальное окно с формой
         /// </summary>
+        [AllureStep("Открыть модальное окно с формой")]
         public ModalsPage OpenFormModal()
         {
             WaitElement(_title);
@@ -88,6 +91,7 @@ namespace SampleAutoTest.Pages
             return this;
         }
 
+        [AllureStep("Ввести в поле Name значение: {0}")]
         public string SendNameModalForm(string name)
         {
             WaitElement(_nameFieldFormModalWindow);
@@ -95,6 +99,7 @@ namespace SampleAutoTest.Pages
             return name;
         }
 
+        [AllureStep("Ввести в поле Email значение: {0}")]
         public string SendEmailModalForm(string email)
         {
             WaitElement(_emailFieldFormModalWindow);
@@ -102,6 +107,7 @@ namespace SampleAutoTest.Pages
             return email;
         }
 
+        [AllureStep("Ввести в поле Message значение: {0}")]
         public string SendMessageModalForm(string message)
         {
             WaitElement(_messageFieldFormModalWindow);
@@ -109,6 +115,7 @@ namespace SampleAutoTest.Pages
             return message;
         }
 
+        [AllureStep("Отправить заполненную форму")]
         public ModalsPage ClickSubmitModalForm()
         {
             WaitElement(_submitBtnFormModalWindow);

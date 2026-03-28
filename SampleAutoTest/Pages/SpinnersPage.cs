@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
@@ -10,6 +11,7 @@ namespace SampleAutoTest.Pages
         /// </summary>
         private readonly By _spinner = By.ClassName("spinner.spinner-hidden");
 
+        [AllureStep("Дождаться исчезновения спинера")]
         public bool WaitSpinnerInvisible()
         {
             return WaitElementInvisible(_spinner);

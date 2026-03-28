@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
@@ -10,10 +11,11 @@ namespace SampleAutoTest.Pages
         private readonly By _textMessage = By.Id("demo");
 
         /// <summary>
-        /// Метод ждет появления кнопки и нажимает на нее
+        /// Ждет появления кнопки и нажимает на нее
         /// </summary>
         /// <param name="animal"></param>
         /// <returns></returns>
+        [AllureStep("Нажать на кнопку: {0}")]
         public ClickElementsPage ClickAnimal(string animal)
         {
             By elAnimal = By.XPath($"//button[normalize-space(.)='{animal}']");
@@ -26,6 +28,7 @@ namespace SampleAutoTest.Pages
         /// Возвращает текст из элемента
         /// </summary>
         /// <returns></returns>
+        [AllureStep("Получить текст")]
         public string GetTextButtonClick()
         {
             return GetTextElement(_textMessage);

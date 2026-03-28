@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
@@ -19,6 +20,7 @@ namespace SampleAutoTest.Pages
         /// Открытие аккордеона и ожидание непутого значения в аккордеоне
         /// </summary>
         /// <returns></returns>
+        [AllureStep("Развернуть аккордеон и дождаться появления текста")]
         public bool WaitAccordionParagraph()
         {
             WaitElement(_accordionBtn);

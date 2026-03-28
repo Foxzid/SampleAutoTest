@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace SampleAutoTest.Pages
@@ -19,6 +20,7 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Ожидает появления кнопки старта на странице и нажимает на нее
         /// </summary>
+        [AllureStep("Нажать на кнопку Start")]
         public JavaScriptPage StartRocket()
         {
             WaitElement(_startButton);
@@ -31,6 +33,7 @@ namespace SampleAutoTest.Pages
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
+        [AllureStep("Ожидать появления текста: {0}")]
         public bool WaitMessageText(string text)
         {
             bool res = Wait.Until(d => d.FindElement(_message).Text.Trim() == text);
