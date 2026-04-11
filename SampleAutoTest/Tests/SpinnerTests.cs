@@ -3,11 +3,12 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
-namespace SampleAutoTest.Tests
+namespace SampleAutoTest.Tests.Spiner
 {
-    [TestFixture]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     [AllureNUnit]
-    public class SpinnerTests : BaseTest
+    public class SpinnerTests(string browser) : BaseTest(browser)
     {
         private SpinnersPage Page()
         {

@@ -3,11 +3,12 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
-namespace SampleAutoTest.Tests
+namespace SampleAutoTest.Tests.Modals
 {
-    [TestFixture]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     [AllureNUnit]
-    public class ModalsTests : BaseTest
+    public class ModalsTests(string browser) : BaseTest(browser)
     {
         private ModalsPage Page()
         {

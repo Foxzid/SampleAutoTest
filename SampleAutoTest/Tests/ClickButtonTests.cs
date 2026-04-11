@@ -3,11 +3,12 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
-namespace SampleAutoTest.Tests
+namespace SampleAutoTest.Tests.ClickButton
 {
-    [TestFixture]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     [AllureNUnit]
-    public class ClickButtonTests : BaseTest
+    public class ClickButtonTests(string browser) : BaseTest(browser)
     {
         private ClickElementsPage Page()
         {

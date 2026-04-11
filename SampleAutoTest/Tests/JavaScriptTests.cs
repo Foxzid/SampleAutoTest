@@ -3,11 +3,12 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
-namespace SampleAutoTest.Tests
+namespace SampleAutoTest.Tests.JavaScript
 {
-    [TestFixture]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     [AllureNUnit]
-    public class JavaScriptTests : BaseTest
+    public class JavaScriptTests(string browser) : BaseTest(browser)
     {
         private JavaScriptPage Page()
         {

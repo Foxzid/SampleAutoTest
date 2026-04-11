@@ -3,11 +3,12 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
 
-namespace SampleAutoTest.Tests
+namespace SampleAutoTest.Tests.Table
 {
-    [TestFixture]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     [AllureNUnit]
-    public class TableTests : BaseTest
+    public class TableTests(string browser) : BaseTest(browser)
     {
         private TablePage Page()
         {

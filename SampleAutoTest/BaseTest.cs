@@ -1,6 +1,8 @@
 ﻿using Allure.Net.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using SampleAutoTest.TestHelpers;
 
 namespace SampleAutoTest
@@ -8,15 +10,26 @@ namespace SampleAutoTest
     public abstract class BaseTest
     {
         protected IWebDriver _driver;
+        private readonly string _browser;
         protected JsonContains jsonContains;
+
+        public BaseTest(string browser)
+        {
+            _browser = browser;
+        }
 
         [OneTimeSetUp]
         protected void OneTimeSetUp()
         {
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
-
             InitializeData();
+            _driver = _browser.ToLower() switch
+            {
+                "chrome" => new ChromeDriver(),
+                "firefox" => new FirefoxDriver(),
+                "edge" => new EdgeDriver(),
+                _ => throw new ArgumentException($"Браузер {_browser} не поддерживается")
+            };
+            _driver.Manage().Window.Maximize();
         }
 
         [SetUp]
@@ -49,7 +62,8 @@ namespace SampleAutoTest
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
-            _driver.Dispose();
+            _driver?.Quit();
+            _driver?.Dispose();
         }
         
     }

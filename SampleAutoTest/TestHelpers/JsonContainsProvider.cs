@@ -10,5 +10,12 @@ namespace SampleAutoTest.TestHelpers
             string objectJsonFile = File.ReadAllText(_nameJsonFile);
             jsonContainsObject = JsonSerializer.Deserialize<JsonContains>(objectJsonFile)!;
         }
+
+        public static IEnumerable<string> GetBrowsers()
+        {
+            string objectJsonFile = File.ReadAllText(_nameJsonFile);
+            var settings = JsonSerializer.Deserialize<JsonContains>(objectJsonFile);
+            return settings?.Browsers ?? ["Chrome"];
+        }
     }
 }
