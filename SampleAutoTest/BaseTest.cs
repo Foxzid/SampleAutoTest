@@ -12,7 +12,7 @@ namespace SampleAutoTest
         private ThreadLocal<IWebDriver> _driverThread = new ThreadLocal<IWebDriver>();
         protected IWebDriver _driver
         {
-            get => _driverThread.Value!;
+            get => _driverThread.Value;
             set => _driverThread.Value = value;
         }
         private readonly string _browser;
@@ -59,6 +59,7 @@ namespace SampleAutoTest
                 AllureApi.AddAttachment("Screenshot на момент ошибки", "image/png", content);
             }
             _driver?.Quit();
+            _driver?.Dispose();
         }
 
         [OneTimeTearDown]
