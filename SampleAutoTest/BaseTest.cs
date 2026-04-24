@@ -9,7 +9,12 @@ namespace SampleAutoTest
 {
     public abstract class BaseTest
     {
-        protected IWebDriver _driver;
+        private ThreadLocal<IWebDriver> _driverThread = new ThreadLocal<IWebDriver>();
+        protected IWebDriver _driver
+        {
+            get => _driverThread.Value!;
+            set => _driverThread.Value = value;
+        }
         private readonly string _browser;
         protected JsonContains jsonContains;
 
@@ -22,19 +27,20 @@ namespace SampleAutoTest
         protected void OneTimeSetUp()
         {
             InitializeData();
-            _driver = _browser.ToLower() switch
+        }
+
+        [SetUp]
+        protected void SetUp()
+        {
+            IWebDriver driver = _browser.ToLower() switch
             {
                 "chrome" => new ChromeDriver(),
                 "firefox" => new FirefoxDriver(),
                 "edge" => new EdgeDriver(),
                 _ => throw new ArgumentException($"Браузер {_browser} не поддерживается")
             };
+            _driver = driver;
             _driver.Manage().Window.Maximize();
-        }
-
-        [SetUp]
-        protected void SetUp()
-        {            
         }
 
         private void InitializeData()
@@ -52,18 +58,13 @@ namespace SampleAutoTest
                 byte[] content = screenshot.AsByteArray;
                 AllureApi.AddAttachment("Screenshot на момент ошибки", "image/png", content);
             }
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript("window.localStorage.clear();");
-            js.ExecuteScript("window.sessionStorage.clear();");
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().Refresh();
+            _driver?.Quit();
         }
 
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
-            _driver?.Quit();
-            _driver?.Dispose();
+            _driverThread?.Dispose();
         }
         
     }
