@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -12,7 +12,7 @@ namespace SampleAutoTest.Tests.Table
     {
         private TablePage Page()
         {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/tables//");
+            _driver.Navigate().GoToUrl($"{jsonContains.Url}/tables/");
             return new TablePage(_driver);
         }
 
@@ -23,7 +23,7 @@ namespace SampleAutoTest.Tests.Table
         [AllureDescription("Тест сравнивает актуальную цену на товар с ожидаемой")]
         [AllureTag("Tables", "UI")]
         [AllureSeverity(SeverityLevel.minor)]
-        public void SpinnerPage_WaitSpinnerInvisible(string itemP, string expectedP)
+        public void TablePage_GetItemPrice_PriceMatchesExpected(string itemP, string expectedP)
         {
             var tablePage = Page();
 

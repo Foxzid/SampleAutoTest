@@ -9,7 +9,7 @@ namespace SampleAutoTest.Pages
         /// <summary>
         /// Спинер загрузки
         /// </summary>
-        private readonly By _spinner = By.ClassName("spinner.spinner-hidden");
+        private readonly By _spinner = By.CssSelector(".spinner.spinner-hidden");
 
         [AllureStep("Дождаться исчезновения спинера")]
         public bool WaitSpinnerInvisible()
