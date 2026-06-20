@@ -6,7 +6,7 @@ using SampleAutoTest.Pages;
 namespace SampleAutoTest.Tests.Modals
 {
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    [TestFixture("firefox")]
     [AllureNUnit]
     public class ModalsTests(string browser) : BaseTest(browser)
     {

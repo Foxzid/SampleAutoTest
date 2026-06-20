@@ -6,7 +6,7 @@ using SampleAutoTest.Pages;
 namespace SampleAutoTest.Tests.Table
 {
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    [TestFixture("firefox")]
     [AllureNUnit]
     public class TableTests(string browser) : BaseTest(browser)
     {

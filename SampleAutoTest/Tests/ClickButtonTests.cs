@@ -6,7 +6,7 @@ using SampleAutoTest.Pages;
 namespace SampleAutoTest.Tests.ClickButton
 {
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    [TestFixture("firefox")]
     [AllureNUnit]
     public class ClickButtonTests(string browser) : BaseTest(browser)
     {

@@ -32,6 +32,7 @@ namespace SampleAutoTest
         [SetUp]
         protected void SetUp()
         {
+            AllureApi.AddSubSuite(_browser);
             IWebDriver driver = _browser.ToLower() switch
             {
                 "chrome" => new ChromeDriver(),

@@ -6,7 +6,7 @@ using SampleAutoTest.Pages;
 namespace SampleAutoTest.Tests.Accordions
 {
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    [TestFixture("firefox")]
     [AllureNUnit]
     public class AccordionsTests(string browser) : BaseTest(browser)
     {

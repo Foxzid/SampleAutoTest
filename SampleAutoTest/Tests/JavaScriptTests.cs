@@ -6,7 +6,7 @@ using SampleAutoTest.Pages;
 namespace SampleAutoTest.Tests.JavaScript
 {
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    [TestFixture("firefox")]
     [AllureNUnit]
     public class JavaScriptTests(string browser) : BaseTest(browser)
     {
