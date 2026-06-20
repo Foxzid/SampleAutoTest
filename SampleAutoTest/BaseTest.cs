@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -45,8 +45,7 @@ namespace SampleAutoTest
 
         private void InitializeData()
         {
-            new JsonContainsProvider().Provide(out JsonContains jsonContainsObject);
-            jsonContains = jsonContainsObject;
+            jsonContains = new JsonContainsProvider().Provide();
         }
 
         [TearDown]

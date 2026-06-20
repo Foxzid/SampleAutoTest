@@ -5,17 +5,23 @@ namespace SampleAutoTest.TestHelpers
     public class JsonContainsProvider
     {
         private const string _nameJsonFile = "appsettings.json";
-        public void Provide(out JsonContains jsonContainsObject)
+
+        public JsonContains Provide()
         {
-            string objectJsonFile = File.ReadAllText(_nameJsonFile);
-            jsonContainsObject = JsonSerializer.Deserialize<JsonContains>(objectJsonFile)!;
+            string objectJsonFile = ReadJsonFile();
+            return JsonSerializer.Deserialize<JsonContains>(objectJsonFile)
+                ?? throw new InvalidOperationException(
+                    $"Не удалось десериализовать файл {_nameJsonFile}. Проверьте формат JSON.");
         }
 
-        public static IEnumerable<string> GetBrowsers()
+        private string ReadJsonFile()
         {
-            string objectJsonFile = File.ReadAllText(_nameJsonFile);
-            var settings = JsonSerializer.Deserialize<JsonContains>(objectJsonFile);
-            return settings?.Browsers ?? ["Chrome"];
+            if (!File.Exists(_nameJsonFile))
+                throw new FileNotFoundException(
+                    $"Файл конфигурации не найден: {_nameJsonFile}. " +
+                    $"Текущая директория: {Directory.GetCurrentDirectory()}");
+
+            return File.ReadAllText(_nameJsonFile);
         }
     }
 }
