@@ -35,9 +35,9 @@ namespace SampleAutoTest
             AllureApi.AddSubSuite(_browser);
             IWebDriver driver = _browser.ToLower() switch
             {
-                "chrome" => new ChromeDriver(),
-                "firefox" => new FirefoxDriver(),
-                "edge" => new EdgeDriver(),
+                "chrome" => new ChromeDriver(new ChromeOptions { PageLoadStrategy = PageLoadStrategy.Eager }),
+                "firefox" => new FirefoxDriver(new FirefoxOptions { PageLoadStrategy = PageLoadStrategy.Eager }),
+                "edge" => new EdgeDriver(new EdgeOptions { PageLoadStrategy = PageLoadStrategy.Eager }),
                 _ => throw new ArgumentException($"Браузер {_browser} не поддерживается")
             };
             _driver = driver;
