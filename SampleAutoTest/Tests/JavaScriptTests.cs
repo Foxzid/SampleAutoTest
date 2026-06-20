@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.JavaScript
     [AllureNUnit]
     public class JavaScriptTests(string browser) : BaseTest(browser)
     {
-        private JavaScriptPage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/javascript-delays/");
-            return new JavaScriptPage(_driver);
-        }
-
         [Test]
         [AllureName("Проверка ожидания текста Liftoff! через 15 сек")]
         [AllureDescription("Тест ожидает появления текста Liftoff! после нажатия на кнопку Start")]
@@ -23,7 +17,8 @@ namespace SampleAutoTest.Tests.JavaScript
         [AllureSeverity(SeverityLevel.minor)]
         public void OpenJavaScriptPage_ClickStart_WaitMessage()
         {
-            var jsPage = Page();
+            var jsPage = new JavaScriptPage(_driver);
+            jsPage.Open(jsonContains.Url);
 
             bool actual = jsPage
                 .StartRocket()

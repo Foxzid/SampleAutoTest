@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.ClickButton
     [AllureNUnit]
     public class ClickButtonTests(string browser) : BaseTest(browser)
     {
-        private ClickElementsPage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/click-events/");
-            return new ClickElementsPage(_driver);
-        }
-
         [TestCase("Cat", "Meow!")]
         [TestCase("Dog", "Woof!")]
         [TestCase("Pig", "Oink!")]
@@ -26,7 +20,8 @@ namespace SampleAutoTest.Tests.ClickButton
         [AllureSeverity(SeverityLevel.minor)]
         public void ClickEventsPage_ClickAnimalButton_WaitText(string animal, string animalSay)
         {
-            var cbPage = Page();
+            var cbPage = new ClickElementsPage(_driver);
+            cbPage.Open(jsonContains.Url);
 
             string actual = cbPage
                 .ClickAnimal(animal)

@@ -1,10 +1,11 @@
-﻿using Allure.NUnit.Attributes;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
     public class SpinnersPage(IWebDriver driver) : BasePage(driver)
     {
+        protected override string UrlPath => "/spinners/";
 
         /// <summary>
         /// Спинер загрузки

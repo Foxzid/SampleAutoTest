@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.Spiner
     [AllureNUnit]
     public class SpinnerTests(string browser) : BaseTest(browser)
     {
-        private SpinnersPage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/spinners/");
-            return new SpinnersPage(_driver);
-        }
-
         [Test]
         [AllureName("Ожидание исчезновения спинера при загрузке страницы")]
         [AllureDescription("Тест ожидает исчезновения спинера при загрузке страницы")]
@@ -23,7 +17,8 @@ namespace SampleAutoTest.Tests.Spiner
         [AllureSeverity(SeverityLevel.minor)]
         public void SpinnerPage_WaitSpinnerInvisible()
         {
-            var spinnerPage = Page();
+            var spinnerPage = new SpinnersPage(_driver);
+            spinnerPage.Open(jsonContains.Url);
 
             bool actual = spinnerPage
                 .WaitSpinnerInvisible();

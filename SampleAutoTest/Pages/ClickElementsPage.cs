@@ -1,10 +1,11 @@
-﻿using Allure.NUnit.Attributes;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
     public class ClickElementsPage(IWebDriver driver) : BasePage(driver)
     {
+        protected override string UrlPath => "/click-events/";
         /// <summary>
         /// Текст, который появится после нажатия на кнопку
         /// </summary>

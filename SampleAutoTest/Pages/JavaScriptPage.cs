@@ -1,4 +1,4 @@
-﻿using Allure.NUnit.Attributes;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -6,6 +6,7 @@ namespace SampleAutoTest.Pages
 {
     public class JavaScriptPage(IWebDriver driver) : BasePage(driver)
     {
+        protected override string UrlPath => "/javascript-delays/";
 
         /// <summary>
         /// Кнопка запуска

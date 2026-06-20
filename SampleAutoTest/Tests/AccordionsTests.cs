@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.Accordions
     [AllureNUnit]
     public class AccordionsTests(string browser) : BaseTest(browser)
     {
-        private AccordionsPage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/accordions/");
-            return new AccordionsPage(_driver);
-        }
-
         [Test]
         [AllureName("Проверка раскрытия аккордеона")]
         [AllureDescription("Тест проверяет раскрытие аккордеона на странице")]
@@ -23,7 +17,8 @@ namespace SampleAutoTest.Tests.Accordions
         [AllureSeverity(SeverityLevel.minor)]
         public void OpenJavaScriptPage_ClickStart_WaitMessage()
         {
-            var acPage = Page();
+            var acPage = new AccordionsPage(_driver);
+            acPage.Open(jsonContains.Url);
 
             bool actual = acPage
                 .WaitAccordionParagraph();

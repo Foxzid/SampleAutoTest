@@ -1,12 +1,19 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 namespace SampleAutoTest.Pages
 {
-    public class BasePage(IWebDriver driver)
+    public abstract class BasePage(IWebDriver driver)
     {
         protected readonly IWebDriver _driver = driver;
         protected WebDriverWait Wait => new(_driver, TimeSpan.FromSeconds(15));
+
+        protected abstract string UrlPath { get; }
+
+        public void Open(string baseUrl)
+        {
+            _driver.Navigate().GoToUrl($"{baseUrl}{UrlPath}");
+        }
 
         /// <summary>
         /// Проверка наличия элемента без вызова исключения

@@ -1,10 +1,11 @@
-﻿using Allure.NUnit.Attributes;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
     public class TablePage(IWebDriver driver):BasePage(driver)
     {
+        protected override string UrlPath => "/tables/";
         private readonly By _table = By.ClassName("wp-block-table");
 
         [AllureStep("Получить актуальную цену продукта: {0}")]

@@ -1,10 +1,11 @@
-﻿using Allure.NUnit.Attributes;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
 namespace SampleAutoTest.Pages
 {
     public class AccordionsPage(IWebDriver driver) : BasePage(driver)
     {
+        protected override string UrlPath => "/accordions/";
 
         /// <summary>
         /// опка открытия аккордиона

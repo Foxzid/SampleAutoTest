@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.Table
     [AllureNUnit]
     public class TableTests(string browser) : BaseTest(browser)
     {
-        private TablePage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/tables/");
-            return new TablePage(_driver);
-        }
-
         [TestCase("Oranges", "$3.99")]
         [TestCase("Laptop", "$1200.00")]
         [TestCase("Marbles", "$1.25")]
@@ -25,7 +19,8 @@ namespace SampleAutoTest.Tests.Table
         [AllureSeverity(SeverityLevel.minor)]
         public void TablePage_GetItemPrice_PriceMatchesExpected(string itemP, string expectedP)
         {
-            var tablePage = Page();
+            var tablePage = new TablePage(_driver);
+            tablePage.Open(jsonContains.Url);
 
             string actualP = tablePage
                 .GetItemPrice(itemP);

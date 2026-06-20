@@ -1,4 +1,4 @@
-﻿using Allure.Net.Commons;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using SampleAutoTest.Pages;
@@ -10,12 +10,6 @@ namespace SampleAutoTest.Tests.Modals
     [AllureNUnit]
     public class ModalsTests(string browser) : BaseTest(browser)
     {
-        private ModalsPage Page()
-        {
-            _driver.Navigate().GoToUrl($"{jsonContains.Url}/modals/");
-            return new ModalsPage(_driver);
-        }
-
         [Test]
         [AllureName("Проверка открытия простого модального окна")]
         [AllureDescription("Тест проверяет отображение простого модального окна после нажатия накнопку")]
@@ -23,7 +17,8 @@ namespace SampleAutoTest.Tests.Modals
         [AllureSeverity(SeverityLevel.minor)]
         public void ModalsPage_OpenSimpleModal_SimpleModalIsVisable()
         {
-            var page = Page();
+            var page = new ModalsPage(_driver);
+            page.Open(jsonContains.Url);
 
             bool actual = page
                 .OpenSimplModal();
@@ -38,7 +33,8 @@ namespace SampleAutoTest.Tests.Modals
         [AllureSeverity(SeverityLevel.critical)]
         public void ModalsPage_OpenFormModal_SendForm()
         {
-            var page = Page();
+            var page = new ModalsPage(_driver);
+            page.Open(jsonContains.Url);
             page.OpenFormModal();
             string expectedName = page.SendNameModalForm("John");
             string expectedEmail = page.SendEmailModalForm("JohnAuto@test.csh");
